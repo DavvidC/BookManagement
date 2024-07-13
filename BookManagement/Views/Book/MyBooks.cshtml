@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BookManagement.Models.Book>
+
+@{
+    ViewData["Title"] = "Moje książki";
+}
+
+<h1>Moje książki</h1>
+
+<p>Te książki są przypisane do Twojego konta i nie będą widoczne dla innych użytkowników. Możesz je zwolnić lub całkowicie usunąć z systemu.</p>
+
+<form asp-action="MyBooks" method="get">
+    <div class="form-group">
+        <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Szukaj książki po tytule lub autorze" />
+    </div>
+    <button type="submit" class="btn btn-primary">Szukaj</button>
+</form>
+
+<div class="row mt-3">
+    @foreach (var book in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@book.Title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@book.Author</h6>
+                    <p class="card-text">@book.Description</p>
+                    <form asp-action="RemoveFromMyBooks" method="post">
+                        <input type="hidden" name="id" value="@book.Id" />
+                        <button type="submit" class="btn btn-danger">Usuń książkę</button>
+                    </form>
+                    <form asp-action="ReleaseBook" method="post">
+                        <input type="hidden" name="id" value="@book.Id" />
+                        <button type="submit" class="btn btn-secondary">Zwolnij książkę</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

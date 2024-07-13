@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BookManagement.Models.Book>
+
+@{
+    ViewData["Title"] = "Strona główna";
+}
+
+@if (ViewBag.IsLoggedIn)
+{
+    <h1>Witamy, @ViewBag.Username!</h1>
+}
+else
+{
+    <h1>Witamy w aplikacji BookManagement!</h1>
+    <p>Użyj menu nawigacyjnego, aby zarejestrować się, zalogować lub przeglądać książki.</p>
+}
+
+<div>
+    <h2>Oto losowe książki dla Ciebie</h2>
+    <p>W zakładce Books znajdziesz wszystkie dostępne tytuły.</p>
+    <div class="row">
+        @foreach (var book in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@book.Author</h6>
+                        <p class="card-text">@book.Description</p>
+                        <p class="card-text">Średnia ocena: @book.AverageRating.ToString("0.00")</p>
+                        <form asp-action="AddToMyBooks" method="post">
+                            <input type="hidden" name="id" value="@book.Id" />
+                            <button type="submit" class="btn btn-primary">Dodaj do moich książek</button>
+                        </form>
+                        <form asp-controller="Book" asp-action="AddRating" method="post">
+                            <div class="form-group">
+                                <label for="rating">Ocena (1-5)</label>
+                                <select id="rating" name="rating" class="form-control" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <input type="hidden" name="bookId" value="@book.Id" />
+                            <button type="submit" class="btn btn-secondary">Dodaj ocenę</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6HOGMf0XtTM36M9a7FADa9IBB1jxQinM0TrF8JmK68vbdEjh4" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+}

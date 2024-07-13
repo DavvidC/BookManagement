@@ -1,0 +1,137 @@
+﻿/* Ustawienia dla zmiennych kolorów */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Ustawienia dla całego dokumentu */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding-top: 56px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+}
+
+/* Ustawienia dla głównej zawartości */
+.main-content {
+    flex: 1;
+}
+
+/* Ustawienia dla stopki */
+.footer {
+    background-color: var(--background-color);
+    padding: 1rem;
+    text-align: center;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -1px 5px var(--card-shadow);
+}
+
+/* Kontener */
+.container {
+    padding-bottom: 60px;
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+/* Karta */
+.card {
+    box-shadow: 0 1px 3px var(--card-shadow);
+    border: none;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+/* Przyciski */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: background-color 0.3s, border-color 0.3s;
+    color: white;
+}
+
+    .btn-primary:hover {
+        background-color: darken(var(--primary-color), 10%);
+        border-color: darken(var(--primary-color), 10%);
+    }
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transition: background-color 0.3s, border-color 0.3s;
+    color: white;
+}
+
+    .btn-secondary:hover {
+        background-color: darken(var(--secondary-color), 10%);
+        border-color: darken(var(--secondary-color), 10%);
+    }
+
+/* Formularze */
+.form-control {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    box-sizing: border-box;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+    .form-group label {
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+/* Ustawienie maksymalnej szerokości dla formularzy */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: var(--background-color);
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px var(--card-shadow);
+}
+
+/* Media Queries dla responsywności */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .form-container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+}
